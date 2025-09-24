@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>كتب ترفيهية</title>
+    <style>
+        /* تنسيقات عامة */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            color: #333;
+            padding: 20px;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* تنسيق الهيدر */
+        header {
+            background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 25px;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            animation: slideDown 0.8s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        @keyframes slideDown {
+            from { transform: translateY(-100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: translateX(-100%);
+            animation: shimmer 3s infinite;
+        }
+        
+        @keyframes shimmer {
+            100% { transform: translateX(100%); }
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
+        }
+        
+        /* تنسيق القائمة */
+        nav {
+            text-align: center;
+            margin-bottom: 30px;
+            animation: fadeIn 1.5s ease-out;
+        }
+        
+        .s1 {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 100%);
+            color: #333;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .s1::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+        
+        .s1:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .s1:hover::before {
+            left: 100%;
+        }
+        
+        /* تنسيق المنتج */
+        .d1 {
+            max-width: 300px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            animation: zoomIn 1s ease-out;
+        }
+        
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        .d1:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+        
+        .d1 img {
+            display: block;
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .d1:hover img {
+            transform: scale(1.1);
+        }
+        
+        .d1 > div {
+            padding: 15px;
+            text-align: center;
+            border: none !important;
+            height: auto !important;
+        }
+        
+        .d1 h3 {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            color: #444;
+        }
+        
+        /* تنسيق زر الشراء */
+        .k00 {
+            display: inline-block;
+            background: linear-gradient(45deg, #4CAF50, #2E7D32);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .k00::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+        
+        .k00:hover {
+            background: linear-gradient(45deg, #2E7D32, #4CAF50);
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .k00:hover::before {
+            left: 100%;
+        }
+        
+        /* تأثيرات إضافية */
+        .price {
+            font-size: 1.3rem;
+            color: #e74c3c;
+            font-weight: bold;
+            margin: 10px 0;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        /* تأثيرات للشاشات الصغيرة */
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            .d1 { max-width: 100%; }
+        }
+        
+        /* تأثيرات النقر */
+        .k00:active {
+            transform: scale(0.95);
+        }
+        
+        .s1:active {
+            transform: translateY(-2px);
+        }
+        
+        /* تأثيرات للصفحة بأكملها */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.1) 0%, rgba(255, 255, 255, 0) 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body class="k">
+    <header id="ht">
+        <h1 id="r">كتب ترفيهية</h1>
+    </header>
+    
+    <nav>
+        <a href="index.html" class="s1">الصفحة الرئيسية</a>
+    </nav>
+    
+    <div class="d1">
+        <img src="https://via.placeholder.com/150x200/4A6572/FFFFFF?text=كتاب+الشطرنج" width="150" height="200" alt="كتاب تعلم لعبة الشطرنج">
+        <div>
+            <h3>كتاب تعلم لعبة الشطرنج</h3>
+            <div class="price">سعر الكتاب: 160 دولار</div>
+            <a href="pay.html" class="k00">شراء</a>
+        </div>
+    </div>
+
+    <script>
+        // إضافة تأثيرات تفاعلية إضافية
+        document.addEventListener('DOMContentLoaded', function() {
+            // تأثيرات عند التمرير
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                const rate = scrolled * -0.5;
+                document.querySelector('header').style.transform = `translateY(${rate * 0.5}px)`;
+            });
+            
+            // تأثيرات النقر على العناصر
+            const buyButton = document.querySelector('.k00');
+            buyButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // تأثير اهتزاز
+                this.style.animation = 'pulse 0.5s';
+                setTimeout(() => {
+                    this.style.animation = 'pulse 2s infinite';
+                }, 500);
+                
+                // محاكاة الانتقال للصفحة التالية
+                setTimeout(() => {
+                    window.location.href = 'pay.html';
+                }, 1000);
+            });
+            
+            // تأثيرات عشوائية للصورة
+            const bookImage = document.querySelector('.d1 img');
+            setInterval(() => {
+                if (Math.random() > 0.7) {
+                    bookImage.style.transform = 'scale(1.05) rotate(1deg)';
+                    setTimeout(() => {
+                        bookImage.style.transform = 'scale(1) rotate(0deg)';
+                    }, 300);
+                }
+            }, 3000);
+            
+            // تأثيرات للقائمة
+            const navLink = document.querySelector('.s1');
+            navLink.addEventListener('mouseenter', function() {
+                this.style.background = 'linear-gradient(45deg, #fad0c4 0%, #ff9a9e 100%)';
+            });
+            
+            navLink.addEventListener('mouseleave', function() {
+                this.style.background = 'linear-gradient(45deg, #ff9a9e 0%, #fad0c4 100%)';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>كتب ترفيهية</title>
+    <style>
+        /* تنسيقات عامة */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            animation: fadeIn 1s ease;
+        }
+        
+        /* تأثير التحميل */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* تنسيق الهيدر */
+        header {
+            background: linear-gradient(90deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: white;
+            padding: 25px;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            animation: slideDown 0.7s ease;
+        }
+        
+        @keyframes slideDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* تنسيق القائمة */
+        nav {
+            text-align: center;
+            margin-bottom: 30px;
+            animation: fadeIn 1.5s ease;
+        }
+        
+        .s1 {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #2c3e50;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .s1:hover {
+            background: #1a252f;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* تنسيق الكتاب */
+        .d1 {
+            width: 300px;
+            margin: 0 auto;
+            text-align: center;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            animation: zoomIn 1s ease;
+        }
+        
+        @keyframes zoomIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        .d1:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .d1 img {
+            display: block;
+            width: 100%;
+            height: auto;
+            transition: transform 0.5s ease;
+        }
+        
+        .d1:hover img {
+            transform: scale(1.05);
+        }
+        
+        .d1 div {
+            padding: 15px;
+            border: none !important;
+            border-top: 3px solid #fdbb2d !important;
+        }
+        
+        .d1 h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        /* تنسيق زر الشراء */
+        .k00 {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #27ae60;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .k00:hover {
+            background: #219653;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: none;
+        }
+        
+        /* تأثيرات للعناصر عند التمرير */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        /* تصميم متجاوب */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .d1 {
+                width: 90%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.7rem;
+            }
+            
+            .s1 {
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body class="k">
+    <header id="ht">
+        <h1 id="r">كتب ترفيهية</h1>
+    </header>
+    
+    <nav>
+        <a href="index.html" class="s1">الصفحة الرئيسية</a>
+    </nav>
+    
+    <div class="d1 fade-in">
+        <img src="h.jpeg" alt="كتاب تعلم لعبة الشطرنج">
+        <div>
+            <h3>كتاب تعلم لعبة الشطرنج<br>سعر الكتاب: 160 دولار</h3>
+            <a href="pay.html" class="k00">شراء</a>
+        </div>
+    </div>
+
+    <script>
+        // إضافة تأثير الظهور عند التمرير
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const fadeInOptions = {
+                threshold: 0.3
+            };
+            
+            const fadeInObserver = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, fadeInOptions);
+            
+            fadeElements.forEach(element => {
+                fadeInObserver.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>

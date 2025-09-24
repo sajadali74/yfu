@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام الدفع</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* تنسيقات عامة */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            animation: fadeIn 1s ease;
+        }
+        
+        /* تأثير التحميل التدريجي */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* تنسيق النموذج */
+        fieldset {
+            border: 2px solid #6a11cb;
+            border-radius: 15px;
+            padding: 25px;
+            background: white;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: slideUp 0.8s ease;
+            width: 100%;
+            max-width: 600px;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        fieldset:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        legend {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #6a11cb;
+            padding: 0 20px;
+            text-align: center;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { text-shadow: 0 0 5px rgba(106, 17, 203, 0.5); }
+            50% { text-shadow: 0 0 15px rgba(106, 17, 203, 0.8); }
+            100% { text-shadow: 0 0 5px rgba(106, 17, 203, 0.5); }
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        tr {
+            margin-bottom: 15px;
+            display: block;
+            animation: fadeInRow 0.6s ease;
+        }
+        
+        @keyframes fadeInRow {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        tr:nth-child(1) { animation-delay: 0.1s; }
+        tr:nth-child(2) { animation-delay: 0.2s; }
+        tr:nth-child(3) { animation-delay: 0.3s; }
+        tr:nth-child(4) { animation-delay: 0.4s; }
+        tr:nth-child(5) { animation-delay: 0.5s; }
+        tr:nth-child(6) { animation-delay: 0.6s; }
+        tr:nth-child(7) { animation-delay: 0.7s; }
+        tr:nth-child(8) { animation-delay: 0.8s; }
+        
+        td {
+            padding: 12px 8px;
+            font-weight: 500;
+        }
+        
+        td:first-child {
+            color: #6a11cb;
+            font-weight: bold;
+            width: 140px;
+        }
+        
+        /* تنسيق حقول الإدخال */
+        .u1 {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+        
+        .u1:focus {
+            border-color: #6a11cb;
+            box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.2);
+            transform: scale(1.02);
+        }
+        
+        select.u1 {
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236a11cb' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 15px center;
+            background-size: 16px;
+            padding-right: 40px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+        
+        /* تنسيق زر الدفع */
+        .but9 {
+            background: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            animation: pulseButton 2s infinite;
+        }
+        
+        @keyframes pulseButton {
+            0% { box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); }
+            50% { box-shadow: 0 5px 20px rgba(106, 17, 203, 0.6); }
+            100% { box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); }
+        }
+        
+        .but9:hover {
+            background: linear-gradient(to right, #2575fc 0%, #6a11cb 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .but9:active {
+            transform: translateY(1px);
+        }
+        
+        /* تنسيقات للجوال */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            
+            fieldset {
+                padding: 20px 15px;
+            }
+            
+            tr {
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 10px;
+            }
+            
+            td:first-child {
+                width: 100%;
+                padding-bottom: 5px;
+            }
+            
+            legend {
+                font-size: 1.5rem;
+            }
+        }
+        
+        /* رسالة التأكيد */
+        .confirmation {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+            text-align: center;
+            z-index: 1000;
+            animation: popIn 0.5s ease;
+            max-width: 90%;
+            width: 400px;
+        }
+        
+        @keyframes popIn {
+            0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+        
+        .confirmation i {
+            font-size: 5rem;
+            color: #4caf50;
+            margin-bottom: 20px;
+            animation: bounce 1s ease;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-25px);}
+            60% {transform: translateY(-15px);}
+        }
+        
+        .confirmation h2 {
+            color: #2e7d32;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+        
+        .confirmation p {
+            color: #555;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+        
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+        
+        /* تأثيرات التحقق من الصحة */
+        .valid {
+            border-color: #4caf50 !important;
+        }
+        
+        .invalid {
+            border-color: #f44336 !important;
+        }
+    </style>
+</head>
+<body>
+    <fieldset>
+        <legend><i class="fas fa-credit-card"></i> عملية الدفع</legend>
+        <table>
+            <tr>
+                <td>اسم العميل:</td>
+                <td><input type="text" placeholder="أدخل اسم العميل" class="u1" required></td>
+            </tr>
+            <tr>
+                <td>رقم الهاتف:</td>
+                <td><input type="tel" placeholder="أدخل رقم الهاتف" required class="u1"></td>
+            </tr>
+            <tr>
+                <td>المدينة:</td>
+                <td>
+                    <select name="city" class="u1">
+                        <option value="">...اختر المدينة...</option>
+                        <option value="المحاويل">المحاويل</option>
+                        <option value="حلة مركز المدينة">حلة مركز المدينة</option>
+                        <option value="بغداد">بغداد</option>
+                        <option value="ديوانية">ديوانية</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>عدد الكتب:</td>
+                <td><input type="number" class="u1" min="1" max="100" placeholder="أدخل عدد الكتب"></td>
+            </tr>
+            <tr>
+                <td>طريقة الدفع:</td>
+                <td>
+                    <select name="pay" class="u1">
+                        <option value="">...اختر طريقة الدفع...</option>
+                        <option value="zain cache">Zain Cash</option>
+                        <option value="master card">Master Card</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>رقم البطاقة:</td>
+                <td><input type="text" placeholder="أدخل رقم البطاقة & CVV" class="u1"></td>
+            </tr>
+            <tr>
+                <td>رقم الهاتف (للدفع):</td>
+                <td><input type="text" placeholder="أدخل رقم الهاتف للدفع" class="u1"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button onclick="check()" class="but9"><i class="fas fa-lock"></i> ادفع الآن</button>
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+    
+    <div class="overlay" id="overlay"></div>
+    
+    <div class="confirmation" id="confirmation">
+        <i class="fas fa-check-circle"></i>
+        <h2>تم الدفع بنجاح!</h2>
+        <p>شكراً لشرائك من متجرنا، سيتم شحن الطلب خلال ٢٤ ساعة</p>
+        <button class="but9" onclick="closeConfirmation()">موافق</button>
+    </div>
+
+    <script>
+        function check() {
+            var inputs = document.querySelectorAll('.u1');
+            var isFilled = true;
+            var firstEmptyInput = null;
+
+            inputs.forEach(function(input) {
+                if (input.value === '' || (input.tagName === 'SELECT' && input.value === '')) {
+                    isFilled = false;
+                    input.classList.add('invalid');
+                    
+                    // إضافة تأثير اهتزاز للحقل غير مكتمل
+                    input.style.animation = 'shake 0.5s';
+                    setTimeout(function() {
+                        input.style.animation = '';
+                    }, 500);
+                    
+                    // حفظ أول حقل غير مكتمل للتمرير إليه
+                    if (!firstEmptyInput) {
+                        firstEmptyInput = input;
+                    }
+                } else {
+                    input.classList.remove('invalid');
+                    input.classList.add('valid');
+                }
+            });
+
+            if (isFilled) {
+                // عرض رسالة التأكيد
+                document.getElementById('overlay').style.display = 'block';
+                document.getElementById('confirmation').style.display = 'block';
+            } else {
+                // التمرير إلى أول حقل غير مكتمل
+                if (firstEmptyInput) {
+                    firstEmptyInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+        }
+        
+        function closeConfirmation() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('confirmation').style.display = 'none';
+            
+            // إعادة تعيين النموذج
+            var inputs = document.querySelectorAll('.u1');
+            inputs.forEach(function(input) {
+                input.value = '';
+                input.classList.remove('valid', 'invalid');
+            });
+        }
+        
+        // إضافة تأثيرات عند التركيز على الحقول
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = document.querySelectorAll('.u1');
+            
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.parentElement.style.transform = 'scale(1.02)';
+                });
+                
+                input.addEventListener('blur', function() {
+                    this.parentElement.style.transform = 'scale(1)';
+                });
+            });
+            
+            // إضافة تأثير اهتزاز للحقول غير المكتملة
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes shake {
+                    0%, 100% { transform: translateX(0); }
+                    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+                    20%, 40%, 60%, 80% { transform: translateX(5px); }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+</body>
+</html>

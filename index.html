@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مكتبة العراق - الصفحة الرئيسية</title>
+    <style>
+        /* أنماط عامة */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* الرأس مع تأثيرات حركية */
+        header {
+            background: linear-gradient(135deg, #1a3a5f 0%, #2c5c8a 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            animation: headerSlideDown 1s ease-out;
+        }
+        
+        @keyframes headerSlideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            animation: fadeIn 2s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* شريط التنقل مع تأثيرات */
+        nav {
+            background-color: #2c5c8a;
+            display: flex;
+            justify-content: center;
+            padding: 1rem 0;
+            animation: navFadeIn 1.5s ease-in;
+        }
+        
+        @keyframes navFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1.2rem;
+            margin: 0 0.5rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            right: 0;
+            background-color: #ffd700;
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* الصورة الرئيسية مع تأثيرات */
+        .main-image {
+            display: flex;
+            justify-content: center;
+            margin: 2rem auto;
+            max-width: 1200px;
+            animation: imageZoomIn 1.5s ease-out;
+        }
+        
+        @keyframes imageZoomIn {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .main-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            transition: transform 0.5s ease;
+        }
+        
+        .main-image img:hover {
+            transform: scale(1.02);
+        }
+        
+        /* قسم الفئات مع تأثيرات */
+        .categories {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 3rem auto;
+            max-width: 1200px;
+            padding: 0 1rem;
+        }
+        
+        .category-card {
+            background: white;
+            border-radius: 8px;
+            width: 220px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            animation: cardAppear 1s ease-out;
+            animation-fill-mode: both;
+        }
+        
+        .category-card:nth-child(1) { animation-delay: 0.2s; }
+        .category-card:nth-child(2) { animation-delay: 0.4s; }
+        .category-card:nth-child(3) { animation-delay: 0.6s; }
+        .category-card:nth-child(4) { animation-delay: 0.8s; }
+        .category-card:nth-child(5) { animation-delay: 1s; }
+        
+        @keyframes cardAppear {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .category-card h3 {
+            color: #2c5c8a;
+            margin-bottom: 0.5rem;
+        }
+        
+        .category-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* التذييل مع تأثيرات */
+        footer {
+            background: linear-gradient(135deg, #1a3a5f 0%, #2c5c8a 100%);
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 2rem;
+            animation: footerFadeIn 2s ease-in;
+        }
+        
+        @keyframes footerFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        footer p {
+            font-size: 1rem;
+        }
+        
+        /* تأثيرات للعناوين */
+        .section-title {
+            text-align: center;
+            margin: 2rem 0;
+            color: #2c5c8a;
+            position: relative;
+            padding-bottom: 0.5rem;
+            animation: titleFadeIn 1.5s ease-in;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background-color: #ffd700;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        @keyframes titleFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* تصميم متجاوب */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav a {
+                margin: 0.3rem 0;
+                width: 80%;
+                text-align: center;
+            }
+            
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .categories {
+                gap: 1rem;
+            }
+            
+            .category-card {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+   <header>
+        <h1>مرحباً بكم في مكتبة العراق</h1>
+        <p>منارة العلم والثقافة منذ 1960</p>
+    </header>
+    
+    <nav>
+        <a href="call.html">اتصال</a>
+        <a href="about.html">حول</a>
+        <a href="كتب دينية.html">كتب دينية</a>
+        <a href="كتب اطفال.html">كتب أطفال</a>
+        <a href="book_hack.html">كتب اختراق</a>
+        <a href="كتب ترفيهية.html">كتب ترفيهية</a>
+    </nav>
+    
+    <div class="main-image">
+        <img src="OIP (4).jpg" alt="صورة مكتبة العراق">
+    </div>
+    
+    <h2 class="section-title">أقسام المكتبة</h2>
+    
+    <div class="categories">
+        <div class="category-card">
+            <h3>كتب دينية</h3>
+            <p>مجموعة واسعة من الكتب الدينية المتنوعة</p>
+        </div>
+        
+        <div class="category-card">
+            <h3>كتب أطفال</h3>
+            <p>قصص وتعليمات مصممة خصيصاً للأطفال</p>
+        </div>
+        
+        <div class="category-card">
+            <h3>كتب اختراق</h3>
+            <p>أحدث الكتب في مجال الأمن السيبراني والاختراق</p>
+        </div>
+        
+        <div class="category-card">
+            <h3>كتب ترفيهية</h3>
+            <p>روايات وقصص للاستمتاع بوقت الفراغ</p>
+        </div>
+        
+        <div class="category-card">
+            <h3>كتب علمية</h3>
+            <p>إصدارات في مختلف المجالات العلمية</p>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; جميع الحقوق محفوظة لمكتبة العراق 2024</p>
+    </footer>
+</body>
+</html>

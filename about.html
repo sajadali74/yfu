@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقع مكتبة العراق</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #00bcd4, #0097a7);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: backgroundShift 10s infinite alternate;
+        }
+        
+        @keyframes backgroundShift {
+            0% { background: linear-gradient(135deg, #00bcd4, #0097a7); }
+            100% { background: linear-gradient(135deg, #0097a7, #00bcd4); }
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            text-align: center;
+            animation: fadeIn 1.5s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .container::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            animation: rotate 20s linear infinite;
+            z-index: 0;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1 {
+            color: #006064;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            animation: titleAnimation 2s ease-in-out;
+        }
+        
+        @keyframes titleAnimation {
+            0% { letter-spacing: 10px; opacity: 0; }
+            100% { letter-spacing: normal; opacity: 1; }
+        }
+        
+        p {
+            margin: 15px 0;
+            line-height: 1.6;
+            font-size: 1.1rem;
+            animation: fadeInUp 1s ease-out;
+            animation-fill-mode: both;
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .designer {
+            font-weight: bold;
+            color: #d32f2f;
+            font-size: 1.2rem;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .phone {
+            display: inline-block;
+            background: linear-gradient(45deg, #4caf50, #2e7d32);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            margin-top: 10px;
+            font-weight: bold;
+            font-size: 1.3rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .phone:hover {
+            background: linear-gradient(45deg, #2e7d32, #4caf50);
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .book-icon {
+            font-size: 3rem;
+            margin: 20px 0;
+            color: #795548;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .description {
+            background-color: rgba(255, 235, 59, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #ffc107;
+            animation: slideIn 1s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(-50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .footer {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #666;
+            animation: fadeIn 2s ease-out;
+        }
+        
+        /* تأثيرات تأخير للفقرات */
+        p:nth-child(2) { animation-delay: 0.3s; }
+        p:nth-child(3) { animation-delay: 0.6s; }
+        p:nth-child(4) { animation-delay: 0.9s; }
+        .phone { animation-delay: 1.2s; }
+        
+        /* تأثيرات للشاشات الصغيرة */
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            p { font-size: 1rem; }
+            .phone { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <h1>موقع مكتبة العراق</h1>
+            <div class="book-icon">📚</div>
+            <p class="designer">برمجة وتصميم سجاد احسان</p>
+            
+            <div class="description">
+                <p>موقع مكتبة العراق</p>
+                <p>موقع يحوي مجموعة من الكتب في مختلف المجالات</p>
+            </div>
+            
+            <p>للمزيد من المعلومات التواصل عبر رقم الهاتف التالي</p>
+            <div class="phone">07819115295</div>
+            
+            <div class="footer">
+                <p>جميع الحقوق محفوظة © 2025</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // إضافة تأثيرات تفاعلية إضافية
+        document.addEventListener('DOMContentLoaded', function() {
+            const phoneElement = document.querySelector('.phone');
+            
+            // تأثير النقر على رقم الهاتف
+            phoneElement.addEventListener('click', function() {
+                this.style.animation = 'none';
+                setTimeout(() => {
+                    this.style.animation = 'bounce 2s infinite';
+                }, 10);
+                
+                // تأثير اهتزاز
+                this.style.transform = 'scale(1.2) rotate(5deg)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1.1)';
+                }, 200);
+                
+                // محاكاة فتح تطبيق الهاتف (يمكن تعديله ليكون رابط هاتف حقيقي)
+                alert('جارٍ الاتصال بـ 07819115295');
+            });
+            
+            // تأثير عند تحريك الماوس فوق العنوان
+            const title = document.querySelector('h1');
+            title.addEventListener('mouseover', function() {
+                this.style.textShadow = '0 0 10px rgba(0, 150, 200, 0.7)';
+            });
+            
+            title.addEventListener('mouseout', function() {
+                this.style.textShadow = '2px 2px 4px rgba(0, 0, 0, 0.1)';
+            });
+            
+            // تأثيرات عشوائية للكتاب
+            const bookIcon = document.querySelector('.book-icon');
+            setInterval(() => {
+                bookIcon.style.transform = `rotate(${Math.random() * 10 - 5}deg)`;
+            }, 3000);
+        });
+    </script>
+</body>
+</html>

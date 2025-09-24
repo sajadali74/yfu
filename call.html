@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نموذج التواصل</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* تنسيقات عامة */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            animation: fadeIn 1s ease;
+        }
+        
+        /* تأثير التحميل التدريجي */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* تنسيق النموذج */
+        form {
+            width: 100%;
+            max-width: 600px;
+            animation: slideUp 0.8s ease;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        fieldset {
+            border: 2px solid #6a11cb;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            background: white;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fieldsetAnim 1s ease;
+        }
+        
+        @keyframes fieldsetAnim {
+            0% { transform: scale(0.9); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        fieldset:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        legend {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #6a11cb;
+            padding: 0 15px;
+            text-align: center;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { text-shadow: 0 0 5px rgba(106, 17, 203, 0.5); }
+            50% { text-shadow: 0 0 15px rgba(106, 17, 203, 0.8); }
+            100% { text-shadow: 0 0 5px rgba(106, 17, 203, 0.5); }
+        }
+        
+        table {
+            width: 100%;
+        }
+        
+        tr {
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        td {
+            padding: 10px;
+            font-weight: 500;
+        }
+        
+        td:first-child {
+            color: #6a11cb;
+            font-weight: bold;
+            width: 120px;
+        }
+        
+        /* تنسيق حقول الإدخال */
+        .t1 {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+        
+        .t1:focus {
+            border-color: #6a11cb;
+            box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.2);
+            transform: scale(1.02);
+        }
+        
+        /* تنسيق زر الإرسال */
+        .but1 {
+            background: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            width: 100%;
+            margin-top: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .but1:hover {
+            background: linear-gradient(to right, #2575fc 0%, #6a11cb 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        }
+        
+        .but1:active {
+            transform: translateY(1px);
+        }
+        
+        /* تنسيق منطقة التعليقات */
+        .t4 {
+            width: 100%;
+            height: 150px;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            resize: vertical;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+        
+        .t4:focus {
+            border-color: #6a11cb;
+            box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.2);
+        }
+        
+        /* تأثيرات للعناصر عند التمرير */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* تنسيقات للجوال */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            
+            fieldset {
+                padding: 15px;
+            }
+            
+            tr {
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 10px;
+            }
+            
+            td:first-child {
+                width: 100%;
+                padding-bottom: 5px;
+            }
+        }
+        
+        /* رسالة تأكيد */
+        .confirmation {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            z-index: 1000;
+            animation: popIn 0.5s ease;
+        }
+        
+        @keyframes popIn {
+            0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+        
+        .confirmation i {
+            font-size: 4rem;
+            color: #6a11cb;
+            margin-bottom: 15px;
+            animation: bounce 1s ease;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-20px);}
+            60% {transform: translateY(-10px);}
+        }
+        
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+    </style>
+</head>
+<body class="r">
+    <form action="" method="post" id="contactForm">
+        <fieldset class="fade-in">
+            <legend><i class="fas fa-headset"></i> تواصل معنا</legend>
+            <table>
+                <tr>
+                    <td>اسم المستخدم*:</td>
+                    <td><input type="text" placeholder="أدخل اسم المستخدم" required class="t1"></td>
+                </tr>
+                <tr>
+                    <td>البريد الإلكتروني*:</td>
+                    <td><input type="email" placeholder="أدخل بريدك الإلكتروني" required class="t1"></td>
+                </tr>
+                <tr>
+                    <td>كلمة المرور*:</td>
+                    <td><input type="password" placeholder="أدخل كلمة المرور" required class="t1"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button type="submit" class="but1"><i class="fas fa-paper-plane"></i> إرسال</button>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+
+        <fieldset class="fade-in">
+            <legend><i class="fas fa-comments"></i> التعليقات</legend>
+            <textarea class="t4" placeholder="اكتب تعليقك هنا..."></textarea>
+        </fieldset>
+    </form>
+    
+    <div class="overlay" id="overlay"></div>
+    
+    <div class="confirmation" id="confirmation">
+        <i class="fas fa-check-circle"></i>
+        <h2>تم الإرسال بنجاح!</h2>
+        <p>شكراً لتواصلك معنا، سنرد عليك قريباً.</p>
+        <button class="but1" onclick="closeConfirmation()">موافق</button>
+    </div>
+
+    <script>
+        // إضافة تأثيرات عند التمرير
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            function checkFade() {
+                fadeElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    
+                    if (elementTop < window.innerHeight - elementVisible) {
+                        element.classList.add('visible');
+                    }
+                });
+            }
+            
+            // التحقق عند التحميل وعند التمرير
+            checkFade();
+            window.addEventListener('scroll', checkFade);
+            
+            // إضافة تأثيرات للحقول عند التركيز
+            const inputs = document.querySelectorAll('.t1, .t4');
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.parentElement.parentElement.style.transform = 'scale(1.02)';
+                    this.parentElement.parentElement.style.zIndex = '1';
+                });
+                
+                input.addEventListener('blur', function() {
+                    this.parentElement.parentElement.style.transform = 'scale(1)';
+                    this.parentElement.parentElement.style.zIndex = '0';
+                });
+            });
+            
+            // التعامل مع إرسال النموذج
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // عرض رسالة التأكيد
+                document.getElementById('overlay').style.display = 'block';
+                document.getElementById('confirmation').style.display = 'block';
+                
+                // يمكنك إضافة كود الإرسال الفعلي هنا
+            });
+        });
+        
+        function closeConfirmation() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('confirmation').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
